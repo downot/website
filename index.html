@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JF56M03PGK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-JF56M03PGK');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DownOT's Home</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+                'Hiragino Kaku Gothic ProN', 'Meiryo',
+                'PingFang SC', 'Microsoft YaHei',
+                'PingFang TC', 'Microsoft JhengHei',
+                sans-serif;
+            background: linear-gradient(135deg, #121212, #1e1e1e);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            height: auto;
+        }
+
+        .container {
+            max-width: 576px;
+            width: 100%;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            position: relative;
+            animation: fadeIn 1s ease-in-out;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.35) 100%);
+            opacity: 0.6;
+            animation: lightShadow 8s ease-in-out infinite alternate;
+            z-index: -1;
+        }
+
+        @keyframes lightShadow {
+            0% {
+                background-position: 0% 0%;
+                transform: scale(1) rotate(0deg);
+                opacity: 0.4;
+            }
+
+            50% {
+                background-position: 100% 100%;
+                transform: scale(1.1) rotate(5deg);
+                opacity: 0.7;
+            }
+
+            100% {
+                background-position: 0% 0%;
+                transform: scale(1) rotate(0deg);
+                opacity: 0.4;
+            }
+        }
+
+        .container.dynamic-light::before {
+            background: radial-gradient(circle, rgba(0, 191, 255, 0.25) 0%, rgba(0, 0, 0, 0.45) 100%);
+            animation: lightShadowDynamic 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes lightShadowDynamic {
+            0% {
+                background-position: 0% 0%;
+                transform: scale(1) rotate(-5deg);
+                opacity: 0.35;
+                filter: brightness(1);
+            }
+
+            50% {
+                background-position: 50% 50%;
+                transform: scale(1.2) rotate(5deg);
+                opacity: 0.75;
+                filter: brightness(1.2);
+            }
+
+            100% {
+                background-position: 100% 100%;
+                transform: scale(1) rotate(-5deg);
+                opacity: 0.35;
+                filter: brightness(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            object-fit: cover;
+            border: 4px solid #00bfff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .avatar:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        h1 {
+            font-size: 28px;
+            margin: 0 0 10px;
+            color: #00ff00;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+            position: relative;
+            z-index: 1;
+        }
+
+        p {
+            margin: 5px 0;
+            line-height: 1.6;
+            font-size: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .link-button {
+            display: block;
+            background: linear-gradient(45deg, #1a1a1a, #333333);
+            color: #fff;
+            text-decoration: none;
+            padding: 15px 15px 15px 50px;
+            margin: 15px 0;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background 0.3s ease;
+            word-break: break-all;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .link-button:hover {
+            background: linear-gradient(45deg, #333333, #4d4d4d);
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        .button-icon {
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            object-fit: contain;
+        }
+
+        .extra-info {
+            font-size: 14px;
+            color: #ccc;
+            margin-left: 5px;
+            font-weight: normal;
+        }
+
+        .hot-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff4500, #ff8c00);
+            color: #fff;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 5px;
+            margin-left: 5px;
+            vertical-align: middle;
+            text-transform: uppercase;
+            box-shadow: 0 0 8px rgba(255, 69, 0, 0.6);
+            animation: pulse-hot 1.5s infinite ease-in-out;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        @keyframes pulse-hot {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 8px rgba(255, 69, 0, 0.6);
+            }
+
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 15px rgba(255, 69, 0, 0.9);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 8px rgba(255, 69, 0, 0.6);
+            }
+        }
+
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(45deg, #1a1a1a, #333333);
+        }
+
+        .carousel-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease, transform 1s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-item.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .carousel-item.next {
+            transform: translateX(100%);
+        }
+
+        .carousel-item.prev {
+            transform: translateX(-100%);
+        }
+
+        .carousel-img {
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .carousel-title {
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
+            color: #c4c4c4;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 2px 7px 2px 2px;
+            border-right: #00ff00 solid 2px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            .avatar {
+                width: 100px;
+                height: 100px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+
+            .link-button {
+                padding: 12px 12px 12px 40px;
+                font-size: 16px;
+            }
+
+            .button-icon {
+                width: 20px;
+                height: 20px;
+                left: 10px;
+            }
+
+            .extra-info {
+                font-size: 12px;
+            }
+
+            .carousel {
+                height: 200px;
+            }
+
+            .carousel-title {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Avatar: Initially loads the static 'avatar.png'. The script below will try to replace it with 'avatar.gif'. -->
+        <img src="avatar.png" alt="Avatar" class="avatar">
+
+        <h1>だうにゃ@DownOT</h1>
+        <p>🎨 AI Magician / AI術師 / AI魔術師</p>
+        <p>
+            可愛さと癒しをちりばめて🌱 ショタ・ケモミミ中心<br>
+            Delivering cuteness to heal your heart 💖 Shota & Catboys focus<br>
+            ✨传递可爱，治愈人心✨ 少年・獸耳向<br>
+            <em>全キャラ18歳以上の創作 / All characters 18+ fictional / 角色皆為18+虛構創作</em>
+        </p>
+
+        <div class="carousel" id="carousel"></div>
+
+        <a href="https://s.downot.moe/pixiv" class="link-button">
+            <img src="pixiv-icon.png" alt="Pixiv Icon" class="button-icon">
+            Pixiv <span class="extra-info"></span>
+        </a>
+        <a href="https://t.me/downot_moe" class="link-button">
+            <img src="telegram-icon.svg" alt="Telegram Icon" class="button-icon">
+            Telegram<span class="extra-info">Mini App <span class="hot-badge">HOT</span> </span>
+        </a>
+        <a href="https://s.downot.moe/discord" class="link-button">
+            <img src="discord-icon.png" alt="Discord Icon" class="button-icon">
+            Discord Server <span class="extra-info">Join Member</span>
+        </a>
+        <a href="https://a.downot.moe/" class="link-button">
+            <img src="collections-icon.png" alt="Collections Icon" class="button-icon">
+            Collections<span class="extra-info">Member Only</span>
+        </a>
+        <a href="https://odaibako.net/u/downot" class="link-button">
+            <img src="feedback-icon.png" alt="Feedback Icon" class="button-icon">
+            Feedback | お題箱 <span class="extra-info"></span>
+        </a>
+    </div>
+
+    <!-- JavaScript for progressive avatar loading and dynamic light effect -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- Configuration for avatar ---
+            const avatarElement = document.querySelector('.avatar');
+            const containerElement = document.querySelector('.container');
+            const animatedAvatarSrc = 'avatar.gif'; // <-- IMPORTANT: Change this to your animated avatar file name
+
+            const animatedAvatarLoader = new Image();
+            animatedAvatarLoader.onload = () => {
+                avatarElement.src = animatedAvatarSrc;
+                containerElement.classList.add('dynamic-light');
+                console.log('Animated avatar loaded successfully. Enhanced dynamic light activated.');
+            };
+            animatedAvatarLoader.onerror = () => {
+                console.error('Failed to load animated avatar. Displaying static version with basic light.');
+            };
+            animatedAvatarLoader.src = animatedAvatarSrc;
+
+            // --- Carousel Configuration ---
+            const carouselElement = document.getElementById('carousel');
+            const images = [ //
+                { src: '2026/02/27/22/30/21/141703947', title: 'Leo on the street / レオが通りにいる', link: 'https://www.pixiv.net/artworks/141703947' },
+                //{ src: '2025/12/25/00/03/42/139008345', title: "Merry Christmas - Leo", link: 'https://www.pixiv.net/artworks/139008345' },
+                //{ src: '2026/01/01/00/06/23/139340138', title: 'Happy New Year 2026 - Leo', link: 'https://www.pixiv.net/artworks/139340138' },
+                //{ src: '2025/09/04/00/01/50/134682005', title: 'Felex\'s daily life at home', link: 'https://www.pixiv.net/artworks/134682005'  },
+                //{ src: '2025/08/13/00/00/54/133811826', title: 'Catching insects in the wild / 野生の昆虫を捕まえる', link: 'https://www.pixiv.net/artworks/133811826'  },
+                { src: '2025/11/20/00/17/26/137666520', title: 'Leo\'s Daily / レオの毎日 - I', link: 'https://www.pixiv.net/artworks/137666520' },
+                { src: '2025/11/21/01/07/50/137703337', title: 'Leo\'s Daily / レオの毎日 - II', link: 'https://www.pixiv.net/artworks/137703337' }
+                //{ src: '2025/12/08/00/01/21/138350664', title: 'Getting ready for Christmas-Leo', link: 'https://www.pixiv.net/artworks/138350664'}
+            ];
+            const numToSelect = 3;
+            const intervalTime = 5000;
+
+            // --- Carousel Logic ---
+            const shuffleArray = (array) => array.sort(() => 0.5 - Math.random());
+            const selectedImages = shuffleArray([...images]).slice(0, numToSelect);
+
+            selectedImages.forEach((imgData, index) => {
+                const item = document.createElement('div');
+                item.classList.add('carousel-item');
+                if (index === 0) item.classList.add('active');
+                const item_a = document.createElement('a');
+                item_a.href = imgData.link;
+                item_a.target = '_blank';
+
+                const img = document.createElement('img');
+                img.src = 'https://i.pixiv.cat/c/360x360_70/img-master/img/' + imgData.src + '_p0_square1200.jpg';
+                img.alt = imgData.title;
+                img.classList.add('carousel-img');
+
+                const title = document.createElement('div');
+                title.classList.add('carousel-title');
+                title.textContent = imgData.title;
+
+                item_a.appendChild(img);
+                item_a.appendChild(title);
+                item.appendChild(item_a);
+                carouselElement.appendChild(item);
+            });
+
+            const items = carouselElement.querySelectorAll('.carousel-item');
+            let currentIndex = 0;
+
+            const showNext = () => {
+                const nextIndex = (currentIndex + 1) % items.length;
+                items[currentIndex].classList.remove('active');
+                items[currentIndex].classList.add('prev');
+                items[nextIndex].classList.remove('prev', 'next');
+                items[nextIndex].classList.add('active');
+                currentIndex = nextIndex;
+            };
+
+            setInterval(showNext, intervalTime);
+        });
+    </script>
+</body>
+
+</html>
