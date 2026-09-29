@@ -2,6 +2,16 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DownOT（だうにゃ）个人主页 — AI Magician / AI術師 / AI魔術師，少年・兽耳向 AI 创作">
+    <meta name="theme-color" content="#121212">
+    <link rel="icon" type="image/png" href="avatar.png">
+    <title>DownOT's Home</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="DownOT's Home">
+    <meta property="og:description" content="AI Magician / AI術師 / AI魔術師 — 少年・ケモミミ中心のAI創作">
+    <meta property="og:image" content="avatar.png">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JF56M03PGK"></script>
     <script>
@@ -11,9 +21,6 @@
 
         gtag('config', 'G-JF56M03PGK');
     </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DownOT's Home</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
@@ -186,6 +193,61 @@
             object-fit: contain;
         }
 
+        .icon-cross {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .icon-cross img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: grayscale(0.65);
+            opacity: 0.85;
+        }
+
+        .icon-cross::before,
+        .icon-cross::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 115%;
+            height: 3px;
+            background: #ff4444;
+            border-radius: 2px;
+            box-shadow: 0 0 6px rgba(255, 68, 68, 0.8);
+        }
+
+        .icon-cross::before {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .icon-cross::after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        .pixiv-sad {
+            display: none;
+            margin: -5px 0 15px;
+            padding: 12px 15px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 105, 180, 0.35);
+            font-size: 14px;
+            color: #d8c9e8;
+            text-align: center;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .pixiv-sad.show {
+            display: block;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
         .extra-info {
             font-size: 14px;
             color: #ccc;
@@ -229,7 +291,7 @@
         .carousel {
             position: relative;
             width: 100%;
-            height: 250px;
+            height: 400px;
             overflow: hidden;
             margin: 20px 0;
             border-radius: 10px;
@@ -265,20 +327,10 @@
         }
 
         .carousel-img {
+            width: 300px;
+            height: 400px;
             object-fit: cover;
             border-radius: 5px;
-        }
-
-        .carousel-title {
-            font-size: 14px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            position: absolute;
-            right: 15px;
-            bottom: 15px;
-            color: #c4c4c4;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 2px 7px 2px 2px;
-            border-right: #00ff00 solid 2px;
         }
 
         @media (max-width: 600px) {
@@ -315,11 +367,22 @@
             }
 
             .carousel {
-                height: 200px;
+                height: 320px;
             }
 
-            .carousel-title {
-                font-size: 12px;
+            .carousel-img {
+                width: 240px;
+                height: 320px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
         }
     </style>
@@ -341,10 +404,17 @@
 
         <div class="carousel" id="carousel"></div>
 
-        <a href="https://s.downot.moe/pixiv" class="link-button">
-            <img src="pixiv-icon.png" alt="Pixiv Icon" class="button-icon">
-            Pixiv <span class="extra-info"></span>
+        <a href="https://s.downot.moe/pixiv" class="link-button" id="pixiv-button">
+            <span class="button-icon icon-cross">
+                <img src="pixiv-icon.png" alt="Pixiv Icon">
+            </span>
+            Pixiv <span class="extra-info">停止中 / Suspended</span>
         </a>
+        <div class="pixiv-sad" id="pixiv-sad">
+            😭 pixivアカウントが突然停止に… 会えなくて寂しいです
+            😭 My pixiv account has been suspended… I miss posting for you all 💔
+            😭 我的pixiv账号不幸被封了… 好难过
+        </div>
         <a href="https://t.me/downot_moe" class="link-button">
             <img src="telegram-icon.svg" alt="Telegram Icon" class="button-icon">
             Telegram<span class="extra-info">Mini App <span class="hot-badge">HOT</span> </span>
@@ -369,30 +439,26 @@
             // --- Configuration for avatar ---
             const avatarElement = document.querySelector('.avatar');
             const containerElement = document.querySelector('.container');
-            const animatedAvatarSrc = 'avatar.gif'; // <-- IMPORTANT: Change this to your animated avatar file name
+            const animatedAvatarSrcs = ['avatar.webp', 'avatar.gif'];
 
-            const animatedAvatarLoader = new Image();
-            animatedAvatarLoader.onload = () => {
-                avatarElement.src = animatedAvatarSrc;
-                containerElement.classList.add('dynamic-light');
-                console.log('Animated avatar loaded successfully. Enhanced dynamic light activated.');
+            const tryLoadAnimatedAvatar = (srcs) => {
+                if (!srcs.length) return;
+                const loader = new Image();
+                loader.onload = () => {
+                    avatarElement.src = srcs[0];
+                    containerElement.classList.add('dynamic-light');
+                };
+                loader.onerror = () => tryLoadAnimatedAvatar(srcs.slice(1));
+                loader.src = srcs[0];
             };
-            animatedAvatarLoader.onerror = () => {
-                console.error('Failed to load animated avatar. Displaying static version with basic light.');
-            };
-            animatedAvatarLoader.src = animatedAvatarSrc;
+            tryLoadAnimatedAvatar(animatedAvatarSrcs);
 
             // --- Carousel Configuration ---
             const carouselElement = document.getElementById('carousel');
-            const images = [ //
-                { src: '2026/02/27/22/30/21/141703947', title: 'Leo on the street / レオが通りにいる', link: 'https://www.pixiv.net/artworks/141703947' },
-                //{ src: '2025/12/25/00/03/42/139008345', title: "Merry Christmas - Leo", link: 'https://www.pixiv.net/artworks/139008345' },
-                //{ src: '2026/01/01/00/06/23/139340138', title: 'Happy New Year 2026 - Leo', link: 'https://www.pixiv.net/artworks/139340138' },
-                //{ src: '2025/09/04/00/01/50/134682005', title: 'Felex\'s daily life at home', link: 'https://www.pixiv.net/artworks/134682005'  },
-                //{ src: '2025/08/13/00/00/54/133811826', title: 'Catching insects in the wild / 野生の昆虫を捕まえる', link: 'https://www.pixiv.net/artworks/133811826'  },
-                { src: '2025/11/20/00/17/26/137666520', title: 'Leo\'s Daily / レオの毎日 - I', link: 'https://www.pixiv.net/artworks/137666520' },
-                { src: '2025/11/21/01/07/50/137703337', title: 'Leo\'s Daily / レオの毎日 - II', link: 'https://www.pixiv.net/artworks/137703337' }
-                //{ src: '2025/12/08/00/01/21/138350664', title: 'Getting ready for Christmas-Leo', link: 'https://www.pixiv.net/artworks/138350664'}
+            const images = [
+                { src: 'img/a1.jpeg' },
+                { src: 'img/a2.jpeg' },
+                { src: 'img/a3.jpeg' }
             ];
             const numToSelect = 3;
             const intervalTime = 5000;
@@ -405,22 +471,13 @@
                 const item = document.createElement('div');
                 item.classList.add('carousel-item');
                 if (index === 0) item.classList.add('active');
-                const item_a = document.createElement('a');
-                item_a.href = imgData.link;
-                item_a.target = '_blank';
 
                 const img = document.createElement('img');
-                img.src = 'https://i.pixiv.cat/c/360x360_70/img-master/img/' + imgData.src + '_p0_square1200.jpg';
-                img.alt = imgData.title;
+                img.src = imgData.src;
+                img.alt = 'DownOT artwork';
                 img.classList.add('carousel-img');
 
-                const title = document.createElement('div');
-                title.classList.add('carousel-title');
-                title.textContent = imgData.title;
-
-                item_a.appendChild(img);
-                item_a.appendChild(title);
-                item.appendChild(item_a);
+                item.appendChild(img);
                 carouselElement.appendChild(item);
             });
 
@@ -436,7 +493,18 @@
                 currentIndex = nextIndex;
             };
 
-            setInterval(showNext, intervalTime);
+            let carouselTimer = setInterval(showNext, intervalTime);
+            carouselElement.addEventListener('mouseenter', () => clearInterval(carouselTimer));
+            carouselElement.addEventListener('mouseleave', () => {
+                carouselTimer = setInterval(showNext, intervalTime);
+            });
+
+            // --- Suspended pixiv button: no navigation, toggle the sad message ---
+            const pixivButton = document.getElementById('pixiv-button');
+            pixivButton.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.getElementById('pixiv-sad').classList.toggle('show');
+            });
         });
     </script>
 </body>
