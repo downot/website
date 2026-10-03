@@ -193,59 +193,51 @@
             object-fit: contain;
         }
 
-        .icon-cross {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .new-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #00b894, #00cec9);
+            color: #fff;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 5px;
+            margin-left: 5px;
+            vertical-align: middle;
+            text-transform: uppercase;
+            box-shadow: 0 0 8px rgba(0, 200, 150, 0.6);
+            animation: pulse-new 1.5s infinite ease-in-out;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .icon-cross img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: grayscale(0.65);
-            opacity: 0.85;
+        @keyframes pulse-new {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 8px rgba(0, 200, 150, 0.6);
+            }
+
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 15px rgba(0, 200, 150, 0.9);
+            }
+
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 8px rgba(0, 200, 150, 0.6);
+            }
         }
 
-        .icon-cross::before,
-        .icon-cross::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 115%;
-            height: 3px;
-            background: #ff4444;
-            border-radius: 2px;
-            box-shadow: 0 0 6px rgba(255, 68, 68, 0.8);
-        }
-
-        .icon-cross::before {
-            transform: translate(-50%, -50%) rotate(45deg);
-        }
-
-        .icon-cross::after {
-            transform: translate(-50%, -50%) rotate(-45deg);
-        }
-
-        .pixiv-sad {
-            display: none;
+        .pixiv-note {
             margin: -5px 0 15px;
             padding: 12px 15px;
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 105, 180, 0.35);
+            border: 1px solid rgba(0, 200, 150, 0.35);
             font-size: 14px;
-            color: #d8c9e8;
+            color: #c9e8dc;
             text-align: center;
             line-height: 1.8;
             position: relative;
             z-index: 1;
-        }
-
-        .pixiv-sad.show {
-            display: block;
-            animation: fadeIn 0.4s ease-in-out;
         }
 
         .extra-info {
@@ -404,16 +396,14 @@
 
         <div class="carousel" id="carousel"></div>
 
-        <a href="https://s.downot.moe/pixiv" class="link-button" id="pixiv-button">
-            <span class="button-icon icon-cross">
-                <img src="pixiv-icon.png" alt="Pixiv Icon">
-            </span>
-            Pixiv <span class="extra-info">停止中 / Suspended</span>
+        <a href="https://s.downot.moe/pixiv" class="link-button">
+            <img src="pixiv-icon.png" alt="Pixiv Icon" class="button-icon">
+            Pixiv <span class="extra-info">新账号 / New <span class="new-badge">NEW</span></span>
         </a>
-        <div class="pixiv-sad" id="pixiv-sad">
-            😭 pixivアカウントが突然停止に… 会えなくて寂しいです
-            😭 My pixiv account has been suspended… I miss posting for you all 💔
-            😭 我的pixiv账号不幸被封了… 好难过
+        <div class="pixiv-note">
+            🎉 pixivアカウントへ移行しました！全作品は新アカウントに揃っています
+            🎉 Pixiv account migrated — all works are on the new account!
+            🎉 pixiv账号迁移完成，所有作品已同步到新号，欢迎继续支持！
         </div>
         <a href="https://t.me/downot_moe" class="link-button">
             <img src="telegram-icon.svg" alt="Telegram Icon" class="button-icon">
@@ -497,13 +487,6 @@
             carouselElement.addEventListener('mouseenter', () => clearInterval(carouselTimer));
             carouselElement.addEventListener('mouseleave', () => {
                 carouselTimer = setInterval(showNext, intervalTime);
-            });
-
-            // --- Suspended pixiv button: no navigation, toggle the sad message ---
-            const pixivButton = document.getElementById('pixiv-button');
-            pixivButton.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.getElementById('pixiv-sad').classList.toggle('show');
             });
         });
     </script>
