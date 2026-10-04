@@ -33,6 +33,7 @@
             margin: 0;
             padding: 0;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
@@ -226,6 +227,52 @@
             }
         }
 
+        .link-button.anniversary {
+            padding-left: 15px;
+            background: linear-gradient(135deg, #f472b6, #a78bfa 45%, #22d3ee);
+            background-size: 240% 240%;
+            animation: anniversary-shift 4s ease infinite;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            box-shadow: 0 4px 16px rgba(167, 139, 250, 0.5);
+        }
+
+        .link-button.anniversary:hover {
+            background: linear-gradient(135deg, #f472b6, #a78bfa 45%, #22d3ee);
+            background-size: 240% 240%;
+            animation: anniversary-shift 1.5s ease infinite;
+            box-shadow: 0 10px 28px rgba(244, 114, 182, 0.7);
+        }
+
+        @keyframes anniversary-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .anniversary-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #fbbf24, #f472b6);
+            color: #fff;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 5px;
+            margin-left: 5px;
+            vertical-align: middle;
+            text-transform: uppercase;
+            box-shadow: 0 0 8px rgba(251, 191, 36, 0.6);
+            animation: pulse-anniversary 1.5s infinite ease-in-out;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        @keyframes pulse-anniversary {
+            0% { transform: scale(1); box-shadow: 0 0 8px rgba(251, 191, 36, 0.6); }
+            50% { transform: scale(1.1); box-shadow: 0 0 15px rgba(244, 114, 182, 0.9); }
+            100% { transform: scale(1); box-shadow: 0 0 8px rgba(251, 191, 36, 0.6); }
+        }
+
+        .link-button.anniversary .extra-info { color: #fff; }
+
         .pixiv-note {
             margin: -5px 0 15px;
             padding: 12px 15px;
@@ -280,49 +327,19 @@
             }
         }
 
-        .carousel {
-            position: relative;
+        .copyright {
+            margin: 16px 0 24px;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .welcome-img {
             width: 100%;
-            height: 400px;
-            overflow: hidden;
+            display: block;
             margin: 20px 0;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            background: linear-gradient(45deg, #1a1a1a, #333333);
-        }
-
-        .carousel-item {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease, transform 1s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .carousel-item.active {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .carousel-item.next {
-            transform: translateX(100%);
-        }
-
-        .carousel-item.prev {
-            transform: translateX(-100%);
-        }
-
-        .carousel-img {
-            width: 300px;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 5px;
         }
 
         @media (max-width: 600px) {
@@ -358,14 +375,6 @@
                 font-size: 12px;
             }
 
-            .carousel {
-                height: 320px;
-            }
-
-            .carousel-img {
-                width: 240px;
-                height: 320px;
-            }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -394,7 +403,11 @@
             <em>全キャラ18歳以上の創作 / All characters 18+ fictional / 角色皆為18+虛構創作</em>
         </p>
 
-        <div class="carousel" id="carousel"></div>
+        <img src="img/welcome.jpg" alt="DownOT Welcome" class="welcome-img">
+
+        <a href="characters.html" class="link-button anniversary">
+            🎉 2周年特典<span class="extra-info">2nd Anniversary Special</span>
+        </a>
 
         <a href="https://s.downot.moe/pixiv" class="link-button">
             <img src="pixiv-icon.png" alt="Pixiv Icon" class="button-icon">
@@ -423,6 +436,8 @@
         </a>
     </div>
 
+    <footer class="copyright">© 2024-2026 だうにゃ@DownOT. All Rights Reserved.</footer>
+
     <!-- JavaScript for progressive avatar loading and dynamic light effect -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -442,52 +457,6 @@
                 loader.src = srcs[0];
             };
             tryLoadAnimatedAvatar(animatedAvatarSrcs);
-
-            // --- Carousel Configuration ---
-            const carouselElement = document.getElementById('carousel');
-            const images = [
-                { src: 'img/a1.jpeg' },
-                { src: 'img/a2.jpeg' },
-                { src: 'img/a3.jpeg' }
-            ];
-            const numToSelect = 3;
-            const intervalTime = 5000;
-
-            // --- Carousel Logic ---
-            const shuffleArray = (array) => array.sort(() => 0.5 - Math.random());
-            const selectedImages = shuffleArray([...images]).slice(0, numToSelect);
-
-            selectedImages.forEach((imgData, index) => {
-                const item = document.createElement('div');
-                item.classList.add('carousel-item');
-                if (index === 0) item.classList.add('active');
-
-                const img = document.createElement('img');
-                img.src = imgData.src;
-                img.alt = 'DownOT artwork';
-                img.classList.add('carousel-img');
-
-                item.appendChild(img);
-                carouselElement.appendChild(item);
-            });
-
-            const items = carouselElement.querySelectorAll('.carousel-item');
-            let currentIndex = 0;
-
-            const showNext = () => {
-                const nextIndex = (currentIndex + 1) % items.length;
-                items[currentIndex].classList.remove('active');
-                items[currentIndex].classList.add('prev');
-                items[nextIndex].classList.remove('prev', 'next');
-                items[nextIndex].classList.add('active');
-                currentIndex = nextIndex;
-            };
-
-            let carouselTimer = setInterval(showNext, intervalTime);
-            carouselElement.addEventListener('mouseenter', () => clearInterval(carouselTimer));
-            carouselElement.addEventListener('mouseleave', () => {
-                carouselTimer = setInterval(showNext, intervalTime);
-            });
         });
     </script>
 </body>
