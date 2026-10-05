@@ -185,6 +185,16 @@
             }
         }
 
+        .byline {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: var(--ink);
+            margin-bottom: 18px;
+            animation: fadeUp 0.8s ease 0.12s both;
+        }
+
         .decl {
             text-align: center;
             font-size: 15px;
@@ -407,6 +417,23 @@
             text-align: left;
         }
 
+        .next-text {
+            font-size: 14px;
+            line-height: 1.9;
+            color: #d9d3c5;
+            text-align: left;
+        }
+
+        .next-text a {
+            color: #22d3ee;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .next-text a:hover {
+            text-decoration: underline;
+        }
+
         footer {
             position: relative;
             z-index: 1;
@@ -478,6 +505,8 @@
 
         <h1>Farewell to pixiv</h1>
 
+        <p class="byline">— だうにゃ@DownOT —</p>
+
         <p class="decl">
             pixivを引退します。残念ですが、これが私の決断です。<br>
             I'm stepping away from pixiv. Disappointed, but this is my decision.<br>
@@ -527,6 +556,17 @@
                         <p>アカウントは封禁中 — 閲覧できる範囲は限られるかもしれません<br>The account is suspended — availability may be limited<br>帳號封禁中——能查看的範圍可能有限</p>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <section class="reason">
+            <p class="section-label">今後 · What's Next</p>
+            <div class="reason-box">
+                <p class="next-text">
+                    pixivではこれまでいくつかの探索プロジェクトを手がけてきました。1年を超える実際の使用を経て、これらがpixivの投稿者にとって安全で、ポリシーを遵守し、フォロワーコミュニティを育てられることが確認できました。近いうちに <a href="https://github.com/downot" target="_blank" rel="noopener">GitHub</a> でオープンソース化しますので、ぜひフォローをどうぞ。<br>
+                    I've also been working on several exploratory projects built on pixiv. More than a year of real-world use has confirmed that they're safe for pixiv publishers, policy-compliant, and able to grow a follower community. They'll be open-sourced on <a href="https://github.com/downot" target="_blank" rel="noopener">GitHub</a> soon — follow along if you're interested.<br>
+                    我也曾在pixiv上做過一些探索項目。經過一年多的實際使用，證實這些項目對pixiv的發布者是安全的，遵守平台規則，還能把follower群體運營起來。後續會在 <a href="https://github.com/downot" target="_blank" rel="noopener">GitHub</a> 上開源，歡迎大家關注。
+                </p>
             </div>
         </section>
     </main>
