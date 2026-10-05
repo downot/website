@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Farewell to pixiv — DownOT（だうにゃ）がpixivを引退しました。全作品はTelegram Mini Appで">
+    <meta name="theme-color" content="#0a0a0f">
+    <link rel="icon" type="image/png" href="avatar.png">
+    <title>Farewell to pixiv — DownOT</title>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Farewell to pixiv — DownOT">
+    <meta property="og:description" content="pixiv引退のお知らせ / Farewell to pixiv / 退出pixiv公告 — 全作品はTelegram Mini Appで">
+    <meta property="og:image" content="avatar.png">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JF56M03PGK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-JF56M03PGK');
+    </script>
+    <style>
+        :root {
+            --bg: #0a0a0f;
+            --ink: #e9e7f7;
+            --ink-dim: #a5a1c2;
+            --border: rgba(255, 255, 255, 0.12);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+                'Hiragino Kaku Gothic ProN', 'Meiryo',
+                'PingFang SC', 'Microsoft YaHei',
+                'PingFang TC', 'Microsoft JhengHei',
+                sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: var(--bg);
+            color: var(--ink);
+            background-image:
+                radial-gradient(1100px 600px at 20% -10%, rgba(124, 58, 237, 0.16), transparent 60%),
+                radial-gradient(900px 520px at 85% 10%, rgba(244, 114, 182, 0.10), transparent 60%),
+                radial-gradient(800px 520px at 50% 112%, rgba(34, 211, 238, 0.09), transparent 60%);
+        }
+
+        .nebula {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(110px);
+            mix-blend-mode: screen;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .n1 {
+            width: 420px;
+            height: 420px;
+            left: -120px;
+            top: 12%;
+            background: rgba(124, 58, 237, 0.18);
+            animation: drift1 26s ease-in-out infinite alternate;
+        }
+
+        .n2 {
+            width: 520px;
+            height: 520px;
+            right: -160px;
+            top: 48%;
+            background: rgba(244, 114, 182, 0.12);
+            animation: drift2 32s ease-in-out infinite alternate;
+        }
+
+        @keyframes drift1 {
+            to {
+                transform: translate(60px, -40px) scale(1.15);
+            }
+        }
+
+        @keyframes drift2 {
+            to {
+                transform: translate(-70px, 50px) scale(0.9);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(14px);
+            }
+
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            width: 100%;
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 72px 24px 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .eyebrow {
+            text-align: center;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.34em;
+            text-transform: uppercase;
+            color: var(--ink-dim);
+            margin-bottom: 34px;
+            animation: fadeUp 0.8s ease both;
+        }
+
+        .pixiv-mark {
+            position: relative;
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 26px;
+            animation: fadeUp 0.8s ease 0.05s both;
+        }
+
+        .pixiv-mark img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: grayscale(1) brightness(0.75);
+        }
+
+        .pixiv-mark::before,
+        .pixiv-mark::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 125%;
+            height: 4px;
+            border-radius: 4px;
+            background: linear-gradient(90deg, transparent, #ef4444 30%, #ef4444 70%, transparent);
+            box-shadow: 0 0 14px rgba(239, 68, 68, 0.8);
+        }
+
+        .pixiv-mark::before {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .pixiv-mark::after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: clamp(30px, 7vw, 46px);
+            font-weight: 800;
+            letter-spacing: 0.03em;
+            margin-bottom: 18px;
+            background: linear-gradient(90deg, #22d3ee, #f472b6, #a78bfa, #fbbf24, #22d3ee);
+            background-size: 320% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(0 0 18px rgba(167, 139, 250, 0.35));
+            animation: hue 9s linear infinite, fadeUp 0.8s ease 0.1s both;
+        }
+
+        @keyframes hue {
+            to {
+                background-position: 320% 0;
+            }
+        }
+
+        .decl {
+            text-align: center;
+            font-size: 15px;
+            line-height: 2.1;
+            color: var(--ink-dim);
+            margin-bottom: 36px;
+            animation: fadeUp 0.8s ease 0.15s both;
+        }
+
+        .cta {
+            display: block;
+            width: 100%;
+            max-width: 430px;
+            padding: 18px 20px 16px;
+            border-radius: 16px;
+            background:
+                linear-gradient(135deg, rgba(34, 211, 238, 0.14), rgba(167, 139, 250, 0.14)),
+                linear-gradient(180deg, #26262f, #1d1d24);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: #fff;
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            text-decoration: none;
+            text-align: center;
+            box-shadow: 0 12px 34px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            animation: fadeUp 0.8s ease 0.2s both;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta:hover {
+            transform: translateY(-4px) scale(1.02);
+            border-color: rgba(34, 211, 238, 0.55);
+            box-shadow: 0 18px 44px rgba(0, 0, 0, 0.6), 0 0 34px rgba(34, 211, 238, 0.22);
+        }
+
+        .cta .icon {
+            width: 26px;
+            height: 26px;
+            vertical-align: -7px;
+            margin-right: 10px;
+        }
+
+        .cta .sub {
+            display: block;
+            margin-top: 7px;
+            font-size: 13px;
+            font-weight: 400;
+            color: var(--ink-dim);
+        }
+
+        .cta-note {
+            margin-top: 16px;
+            text-align: center;
+            font-size: 13.5px;
+            line-height: 1.9;
+            color: var(--ink-dim);
+            animation: fadeUp 0.8s ease 0.25s both;
+        }
+
+        .reason {
+            width: 100%;
+            margin-top: 84px;
+            animation: fadeUp 1s ease 0.35s both;
+        }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.38em;
+            text-transform: uppercase;
+            color: rgba(233, 231, 247, 0.42);
+        }
+
+        .section-label::before {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(233, 231, 247, 0.4));
+        }
+
+        .section-label::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(233, 231, 247, 0.4), transparent);
+        }
+
+        .reason-box {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 18px 20px;
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+        }
+
+        .reason-box summary {
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            color: #fbbf24;
+            list-style: none;
+            user-select: none;
+            padding: 4px 0;
+        }
+
+        .reason-box summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .reason-box summary::before {
+            content: '▸ ';
+        }
+
+        .reason-box details[open] summary::before {
+            content: '▾ ';
+        }
+
+        .reason-box summary:hover {
+            color: #fcd34d;
+        }
+
+        .letter {
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+            font-size: 14px;
+            color: #d9d3c5;
+            line-height: 1.9;
+            text-align: left;
+        }
+
+        .letter p {
+            margin: 0 0 4px;
+        }
+
+        .letter .letter-title {
+            font-weight: 700;
+            color: #fbbf24;
+            margin: 12px 0 8px;
+        }
+
+        .letter .letter-title:first-child {
+            margin-top: 0;
+        }
+
+        .letter .signature {
+            margin-top: 14px;
+            text-align: right;
+            color: #fbbf24;
+            font-style: italic;
+        }
+
+        .archive {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .archive-mark {
+            position: relative;
+            width: 36px;
+            height: 36px;
+            flex: none;
+        }
+
+        .archive-mark img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: grayscale(1) brightness(0.7);
+        }
+
+        .archive-mark::before,
+        .archive-mark::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 125%;
+            height: 2px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, transparent, #ef4444 30%, #ef4444 70%, transparent);
+        }
+
+        .archive-mark::before {
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .archive-mark::after {
+            transform: translate(-50%, -50%) rotate(-45deg);
+        }
+
+        .archive a {
+            color: var(--ink);
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .archive a:hover {
+            color: #22d3ee;
+        }
+
+        .archive p {
+            margin-top: 4px;
+            font-size: 12.5px;
+            line-height: 1.8;
+            color: var(--ink-dim);
+            text-align: left;
+        }
+
+        footer {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 0 24px 36px;
+            text-align: center;
+        }
+
+        .home-link {
+            font-size: 13px;
+            color: var(--ink-dim);
+            text-decoration: none;
+            letter-spacing: 0.06em;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.25);
+            padding-bottom: 2px;
+            transition: color 0.25s;
+        }
+
+        .home-link:hover {
+            color: #fff;
+        }
+
+        .copy {
+            margin-top: 16px;
+            font-size: 10.5px;
+            letter-spacing: 0.26em;
+            text-transform: uppercase;
+            color: rgba(233, 231, 247, 0.28);
+        }
+
+        @media (max-width: 600px) {
+            main {
+                padding-top: 48px;
+            }
+
+            .decl {
+                font-size: 14px;
+            }
+
+            .cta {
+                font-size: 17px;
+            }
+
+            .reason {
+                margin-top: 64px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nebula n1"></div>
+    <div class="nebula n2"></div>
+
+    <main>
+        <p class="eyebrow">退圈声明 · Retirement Notice · 2026.10</p>
+
+        <div class="pixiv-mark"><img src="pixiv-icon.png" alt="Pixiv"></div>
+
+        <h1>Farewell to pixiv</h1>
+
+        <p class="decl">
+            pixivを引退します。残念ですが、これが私の決断です。<br>
+            I'm stepping away from pixiv. Disappointed, but this is my decision.<br>
+            我退出pixiv了。很失望，但這就是我的決定。
+        </p>
+
+        <a href="https://t.me/downot_moe" class="cta">
+            <img src="telegram-icon.svg" class="icon" alt="">
+            Telegram Mini App
+            <span class="sub">全作品がここにあります / All works are here / 所有作品都在這裡</span>
+        </a>
+        <p class="cta-note">
+            これからは、ここでよろしくお願いします。<br>
+            From now on, see you there.<br>
+            之後，我們那裡見。
+        </p>
+
+        <section class="reason">
+            <p class="section-label">原委 · The Story</p>
+            <div class="reason-box">
+                <details>
+                    <summary>封禁小劇場 — 興味があればどうぞ / if you're curious / 有興趣的話</summary>
+                    <div class="letter">
+                        <p class="letter-title">pixiv引退のお知らせ</p>
+                        <p>🎭 一幕：老アカウントはしばらく更新が止まっていた。ある日、新モデルで生成した高リアルな画像を1枚投稿——禁止要素は一つもなかった。結果：BAN。</p>
+                        <p>🎭 二幕：新アカウントを作って旧作品を再投稿すれば、フォロー中の友人は旧作を見つけられるはず、と考えた。ところが新アカウントもBAN。理由は「作者本人の許可なく、程序等の技術的手段により、その作品を高度に模倣した投稿」——自分自身を模倣するにも、自分の許可が必要だったらしい。</p>
+                        <p>🎭 三幕：疲れた。pixivでの投稿はこれでお別れ。残念だけれど、それでいい。皆さん、他のプラットフォームでお会いしましょう！</p>
+                        <p>💡 P.S.：小さな発見——pixivのプレミアム会員の審査は、確かに非会員より緩め。お金は効く。ただ、あまり効かない。</p>
+                        <p class="letter-title">Farewell to Pixiv — a ban mini-drama</p>
+                        <p>🎭 Act 1: The old account had been silent for a long time. One day I posted a single hyper-realistic image made with a new model — it contained no prohibited elements at all. Result: BANNED.</p>
+                        <p>🎭 Act 2: I figured that if I made a new account and re-uploaded the old works, my followers could still find the old images. The new account got BANNED too, with this reason: "Posts that highly imitate the author's works using programs or other technical means, without the author's own permission." — Even to imitate myself, I apparently need my own permission.</p>
+                        <p>🎭 Act 3: I'm tired. I'm stepping away from pixiv. Disappointed, but so be it. Friends, see you on other platforms!</p>
+                        <p>💡 P.S.: A little discovery — Pixiv's premium review is indeed looser than the free tier. Paying does work. Just not very much.</p>
+                        <p class="letter-title">退出pixiv公告</p>
+                        <p>🎭 一幕：老帳號沉寂許久，某天心血來潮，發了一張新模型做的高仿真圖——不含任何違禁元素。結果：被封禁。</p>
+                        <p>🎭 二幕：本想開個新號，把老作品重新發布一份，免得關注我的朋友找不到舊圖。結果新號也被封，理由是「未經作者本人許可，使用程序等技術手段，對其作品進行高度模仿的投稿」——原來連模仿我自己，都要經過我自己的許可。</p>
+                        <p>🎭 三幕：算了，累了，不在pixiv上發布內容了。很失望，但就這樣吧。朋友們，其他平台見！</p>
+                        <p>💡 P.S.：發現一個小祕密——pixiv的會員審查，確實比非會員要松一些。花錢還是有用的，只是沒有太大用途。</p>
+                        <p class="signature">— だうにゃ@DownOT, 2026.10</p>
+                    </div>
+                </details>
+                <!-- pixivリンク（可变）：アカウントが変わったら、ここだけ更新 / Update only this link when the pixiv account changes -->
+                <div class="archive">
+                    <span class="archive-mark"><img src="pixiv-icon.png" alt="Pixiv"></span>
+                    <div>
+                        <a href="https://www.pixiv.net/users/15032614">過去のpixiv / Past Pixiv / 舊pixiv</a>
+                        <p>アカウントは封禁中 — 閲覧できる範囲は限られるかもしれません<br>The account is suspended — availability may be limited<br>帳號封禁中——能查看的範圍可能有限</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <a href="index.html" class="home-link">← ホーム / Home / 返回首頁</a>
+        <p class="copy">© 2024-2026 だうにゃ@DownOT</p>
+    </footer>
+</body>
+
+</html>

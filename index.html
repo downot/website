@@ -194,37 +194,11 @@
             object-fit: contain;
         }
 
-        .new-badge {
-            display: inline-block;
-            background: linear-gradient(45deg, #00b894, #00cec9);
-            color: #fff;
-            font-size: 11px;
-            font-weight: bold;
-            padding: 2px 6px;
-            border-radius: 5px;
-            margin-left: 5px;
-            vertical-align: middle;
-            text-transform: uppercase;
-            box-shadow: 0 0 8px rgba(0, 200, 150, 0.6);
-            animation: pulse-new 1.5s infinite ease-in-out;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        @keyframes pulse-new {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 8px rgba(0, 200, 150, 0.6);
-            }
-
-            50% {
-                transform: scale(1.1);
-                box-shadow: 0 0 15px rgba(0, 200, 150, 0.9);
-            }
-
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 8px rgba(0, 200, 150, 0.6);
-            }
+        .button-icon.crossed {
+            filter: grayscale(1) brightness(0.75);
+            background-image:
+                linear-gradient(to top right, transparent 45%, rgba(239, 68, 68, 0.9) 45%, rgba(239, 68, 68, 0.9) 55%, transparent 55%),
+                linear-gradient(to bottom right, transparent 45%, rgba(239, 68, 68, 0.9) 45%, rgba(239, 68, 68, 0.9) 55%, transparent 55%);
         }
 
         .link-button.anniversary {
@@ -273,18 +247,19 @@
 
         .link-button.anniversary .extra-info { color: #fff; }
 
-        .pixiv-note {
-            margin: -5px 0 15px;
-            padding: 12px 15px;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(0, 200, 150, 0.35);
-            font-size: 14px;
-            color: #c9e8dc;
-            text-align: center;
-            line-height: 1.8;
-            position: relative;
-            z-index: 1;
+        .bye-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #6b7280, #9ca3af);
+            color: #fff;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 5px;
+            margin-left: 5px;
+            vertical-align: middle;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            opacity: 0.85;
         }
 
         .extra-info {
@@ -409,15 +384,11 @@
             🎉 2周年特典<span class="extra-info">2nd Anniversary Special</span>
         </a>
 
-        <a href="https://s.downot.moe/pixiv" class="link-button">
-            <img src="pixiv-icon.png" alt="Pixiv Icon" class="button-icon">
-            Pixiv <span class="extra-info">新アカウント / New <span class="new-badge">NEW</span></span>
+        <!-- pixivリンク（可变）：実際のアカウントリンクは pixiv.html に移した / The actual pixiv link now lives in pixiv.html -->
+        <a href="pixiv.html" class="link-button">
+            <img src="pixiv-icon.png" alt="Pixiv Icon" class="button-icon crossed">
+            Pixiv <span class="extra-info">引退 / Farewell <span class="bye-badge">BYE</span></span>
         </a>
-        <div class="pixiv-note">
-            🎉 pixivアカウントへ移行しました！全作品は新アカウントに揃っています
-            🎉 Pixiv account migrated — all works are on the new account!
-            🎉 pixiv账号迁移完成，所有作品已同步到新号，欢迎继续支持！
-        </div>
         <a href="https://t.me/downot_moe" class="link-button">
             <img src="telegram-icon.svg" alt="Telegram Icon" class="button-icon">
             Telegram<span class="extra-info">Mini App <span class="hot-badge">HOT</span> </span>
