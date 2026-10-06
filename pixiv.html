@@ -398,6 +398,15 @@
             transform: translate(-50%, -50%) rotate(-45deg);
         }
 
+        .archive-mark.plain::before,
+        .archive-mark.plain::after {
+            display: none;
+        }
+
+        .archive-mark.plain img {
+            filter: none;
+        }
+
         .archive a {
             color: var(--ink);
             font-size: 15px;
@@ -554,6 +563,13 @@
                     <div>
                         <a href="https://www.pixiv.net/users/15032614">過去のpixiv / Past Pixiv / 舊pixiv</a>
                         <p>アカウントは封禁中 — 閲覧できる範囲は限られるかもしれません<br>The account is suspended — availability may be limited<br>帳號封禁中——能查看的範圍可能有限</p>
+                    </div>
+                </div>
+                <div class="archive">
+                    <span class="archive-mark plain"><img src="pixiv-icon.png" alt="Pixiv"></span>
+                    <div>
+                        <a href="https://a.downot.moe/illusts/">作品アーカイブ / Works Archive / 舊作存檔</a>
+                        <p>アクセスパスワードが必要です<br>Access password required<br>需要訪問密碼</p>
                     </div>
                 </div>
             </div>

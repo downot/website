@@ -249,6 +249,7 @@
 
         .bye-badge {
             display: inline-block;
+            cursor: pointer;
             background: linear-gradient(45deg, #6b7280, #9ca3af);
             color: #fff;
             font-size: 11px;
@@ -260,6 +261,14 @@
             text-transform: uppercase;
             border: 1px solid rgba(255, 255, 255, 0.2);
             opacity: 0.85;
+            transition: opacity 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .bye-badge:hover {
+            background: linear-gradient(45deg, #22d3ee, #a78bfa);
+            border-color: rgba(255, 255, 255, 0.45);
+            opacity: 1;
+            box-shadow: 0 0 10px rgba(34, 211, 238, 0.6);
         }
 
         .extra-info {
@@ -366,7 +375,7 @@
 
 <body>
     <div class="container">
-        <!-- Avatar: Initially loads the static 'avatar.png'. The script below will try to replace it with 'avatar.gif'. -->
+        <!-- Avatar: Initially loads the static 'avatar.png'. The script below will try to replace it with 'avatar.webp'. -->
         <img src="avatar.png" alt="Avatar" class="avatar">
 
         <h1>だうにゃ@DownOT</h1>
@@ -384,14 +393,14 @@
             🎉 2周年特典<span class="extra-info">2nd Anniversary Special</span>
         </a>
 
-        <!-- pixivリンク（可变）：実際のアカウントリンクは pixiv.html に移した / The actual pixiv link now lives in pixiv.html -->
-        <a href="pixiv.html" class="link-button">
+        <!-- pixiv（合并）：主按钮指向静态备份站，尾部"引退"标签链接告别页 / Main button -> static backup, trailing tag -> farewell page -->
+        <a href="https://a.downot.moe/illusts/" class="link-button">
             <img src="pixiv-icon.png" alt="Pixiv Icon" class="button-icon crossed">
-            Pixiv <span class="extra-info">引退 / Farewell <span class="bye-badge">BYE</span></span>
+            Pixiv Works<span class="extra-info">Static Backup · Password <span class="bye-badge" onclick="event.preventDefault(); location.href='pixiv.html'">引退 / BYE</span></span>
         </a>
         <a href="https://t.me/downot_moe" class="link-button">
             <img src="telegram-icon.svg" alt="Telegram Icon" class="button-icon">
-            Telegram<span class="extra-info">Mini App <span class="hot-badge">HOT</span> </span>
+            Telegram Group<span class="extra-info">Mini App <span class="hot-badge">HOT</span> </span>
         </a>
         <a href="https://s.downot.moe/discord" class="link-button">
             <img src="discord-icon.png" alt="Discord Icon" class="button-icon">
@@ -399,7 +408,7 @@
         </a>
         <a href="https://a.downot.moe/" class="link-button">
             <img src="collections-icon.png" alt="Collections Icon" class="button-icon">
-            Collections<span class="extra-info">Member Only</span>
+            Collections<span class="extra-info">gallery · Member Only</span>
         </a>
         <a href="https://odaibako.net/u/downot" class="link-button">
             <img src="feedback-icon.png" alt="Feedback Icon" class="button-icon">
@@ -415,7 +424,7 @@
             // --- Configuration for avatar ---
             const avatarElement = document.querySelector('.avatar');
             const containerElement = document.querySelector('.container');
-            const animatedAvatarSrcs = ['avatar.webp', 'avatar.gif'];
+            const animatedAvatarSrcs = ['avatar.webp'];
 
             const tryLoadAnimatedAvatar = (srcs) => {
                 if (!srcs.length) return;
