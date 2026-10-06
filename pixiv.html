@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Farewell to pixiv — DownOT（だうにゃ）がpixivを引退しました。全作品はTelegram Mini Appで">
+    <meta name="description" content="Farewell to pixiv — DownOT（だうにゃ）がpixivを引退しました。全作品は作品アーカイブで">
     <meta name="theme-color" content="#0a0a0f">
     <link rel="icon" type="image/png" href="avatar.png">
     <title>Farewell to pixiv — DownOT</title>
     <meta property="og:type" content="website">
     <meta property="og:title" content="Farewell to pixiv — DownOT">
-    <meta property="og:description" content="pixiv引退のお知らせ / Farewell to pixiv / 退出pixiv公告 — 全作品はTelegram Mini Appで">
+    <meta property="og:description" content="pixiv引退のお知らせ / Farewell to pixiv / 退出pixiv公告 — 全作品は作品アーカイブで">
     <meta property="og:image" content="avatar.png">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-JF56M03PGK"></script>
@@ -248,13 +248,27 @@
             color: var(--ink-dim);
         }
 
-        .cta-note {
+        .cta-key {
             margin-top: 16px;
+            padding: 12px 18px;
+            border-radius: 12px;
+            border: 1px dashed rgba(251, 191, 36, 0.55);
+            background: rgba(251, 191, 36, 0.07);
             text-align: center;
             font-size: 13.5px;
             line-height: 1.9;
-            color: var(--ink-dim);
+            color: #fcd34d;
             animation: fadeUp 0.8s ease 0.25s both;
+        }
+
+        .cta-key a {
+            color: #22d3ee;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .cta-key a:hover {
+            text-decoration: underline;
         }
 
         .reason {
@@ -398,15 +412,6 @@
             transform: translate(-50%, -50%) rotate(-45deg);
         }
 
-        .archive-mark.plain::before,
-        .archive-mark.plain::after {
-            display: none;
-        }
-
-        .archive-mark.plain img {
-            filter: none;
-        }
-
         .archive a {
             color: var(--ink);
             font-size: 15px;
@@ -522,15 +527,15 @@
             我退出pixiv了。很失望，但這就是我的決定。
         </p>
 
-        <a href="https://t.me/downot_moe" class="cta">
-            <img src="telegram-icon.svg" class="icon" alt="">
-            Telegram Mini App
-            <span class="sub">全作品がここにあります / All works are here / 所有作品都在這裡</span>
+        <a href="https://a.downot.moe/illusts/" class="cta">
+            <img src="pixiv-icon.png" class="icon" alt="">
+            作品アーカイブ / Works Archive / 舊作存檔
+            <span class="sub">アクセスパスワードが必要 / Access password required / 需要訪問密碼</span>
         </a>
-        <p class="cta-note">
-            これからは、ここでよろしくお願いします。<br>
-            From now on, see you there.<br>
-            之後，我們那裡見。
+        <p class="cta-key">
+            🔑 最新パスワードと今後の作品は、<a href="https://t.me/downot_moe" target="_blank" rel="noopener">Telegram Group</a> または <a href="https://s.downot.moe/discord" target="_blank" rel="noopener">Discord Server</a> で入手できます。<br>
+            The latest password and future works: <a href="https://t.me/downot_moe" target="_blank" rel="noopener">Telegram Group</a> or <a href="https://s.downot.moe/discord" target="_blank" rel="noopener">Discord Server</a>.<br>
+            最新密碼與後續作品，請到 <a href="https://t.me/downot_moe" target="_blank" rel="noopener">Telegram Group</a> 或 <a href="https://s.downot.moe/discord" target="_blank" rel="noopener">Discord Server</a> 获取。
         </p>
 
         <section class="reason">
@@ -563,13 +568,6 @@
                     <div>
                         <a href="https://www.pixiv.net/users/15032614">過去のpixiv / Past Pixiv / 舊pixiv</a>
                         <p>アカウントは封禁中 — 閲覧できる範囲は限られるかもしれません<br>The account is suspended — availability may be limited<br>帳號封禁中——能查看的範圍可能有限</p>
-                    </div>
-                </div>
-                <div class="archive">
-                    <span class="archive-mark plain"><img src="pixiv-icon.png" alt="Pixiv"></span>
-                    <div>
-                        <a href="https://a.downot.moe/illusts/">作品アーカイブ / Works Archive / 舊作存檔</a>
-                        <p>アクセスパスワードが必要です<br>Access password required<br>需要訪問密碼</p>
                     </div>
                 </div>
             </div>
